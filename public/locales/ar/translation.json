@@ -1,0 +1,28 @@
+{
+  "home": "الرئيسية",
+  "income": "الوارد",
+  "expense": "المصروفات",
+  "sum_income": "المحموع الوارد",
+  "sum_expense": "محموع المصروفات",
+  "counter": "الصندوق",
+  "result": "مؤشر الفائدة",
+
+  "aed": "درهم اماراتي  ",
+  "export": " تصدير ك : ",
+  "add_income": "  اضافة وارد ",
+  "edit_income": "  تعديل وارد ",
+  "add_expense": "  اضافة مصروف ",
+  "edit_expense": "  تعديل مصروف ",
+  "amount": " القيمة : ",
+  "description": " الوصف : ",
+  "save": " حفظ   ",
+  "delete": " نعم   ",
+  "cancel": " الغاء",
+  "column": {
+    "amount": "القيمة",
+    "description": "الوصف",
+    "time": "الوقت والتاريخ",
+    "actions": "الاجرائات"
+  },
+  "sure": "هل أنت متأكد ؟  "
+}

@@ -1,0 +1,27 @@
+{
+  "home": "Home",
+  "income": "Income",
+  "expense": "Expenses",
+  "sum_income": "Total Income",
+  "sum_expense": "Total Expenses",
+  "counter": "Cash Balance",
+  "result": "Net Profit",
+  "aed": "AED",
+  "export": "Export As:",
+  "add_income": "Add Income",
+  "edit_income": "Edit Income",
+  "add_expense": "Add Expense",
+  "edit_expense": "Edit Expense",
+  "amount": "Amount",
+  "description": "Description",
+  "save": "Save",
+  "delete": "Yes, Delete",
+  "cancel": "Cancel",
+  "column": {
+    "amount": "Amount",
+    "description": "Description",
+    "time": "Date & Time",
+    "actions": "Actions"
+  },
+  "sure": "Are you sure?"
+}
