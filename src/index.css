@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --spacing-xs: 100px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+The html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+.iti {
+  width: 100%;
+}
+
+@utility gradient-bg {
+  @apply bg-gradient-to-tr from-cyan-600 via-blue-500 to-indigo-600;
+}
+
+@utility app-icons {
+  @apply w-5 h-5 stroke-2  text-gray-200;
+}
+
+@utility app-bordered {
+  @apply border-[1px] border-gray-400;
+}
+
+/* font sizes */
+
+@utility title {
+  @apply text-[15px] font-semibold;
+}
+@utility description {
+  @apply text-[14px] text-gray-500 font-semibold rounded-full;
+}
+
+/* tags */
+
+@utility gbill {
+  @apply px-2 mx-auto bg-green-100 text-green-700 text-xs md:text-sm h-6 flex items-center;
+}
+@utility rbill {
+  @apply px-2 rounded-full mx-auto bg-red-100 text-red-700 text-xs md:text-sm h-6 flex items-center;
+}
+
+/* form */
+
+@utility button {
+  @apply py-3 rounded-lg text-white    text-sm  font-medium my-1;
+}
+
+@utility focused {
+  @apply focus:outline-none focus:ring-0 focus:border-transparent;
+}
+
+@utility field {
+  @apply w-full px-2 md:px-4  py-2.5   text-sm   border  border-gray-900     focus:outline-none
+         focus:ring-0
+         focus:border-blue-500;
+}
