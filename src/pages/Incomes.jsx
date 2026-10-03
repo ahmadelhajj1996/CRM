@@ -1,8 +1,7 @@
 import { Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
-import { useTableExport } from "../hooks/useTableExport";
+// import { useTableExport } from "../hooks/useTableExport";
 
 import Breadcrumbs from "../components/sections/Breadcrumbs";
 import Statistics from "../components/Statistics";
@@ -15,11 +14,9 @@ import { useForm } from "../hooks/useForm";
 import useTransactions from "../hooks/Data/useTransactions";
 import IncomeForm from "../components/reusableforms/IncomeForm";
 
-import notify from "../utils/toastr";
 
 function Categories() {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
 
   const { isOpen, modalMode, modalData, openModal, closeModal } = useModal();
 
@@ -119,3 +116,4 @@ function Categories() {
 }
 
 export default Categories;
+
