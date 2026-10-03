@@ -1,8 +1,8 @@
-import useSettings from "../hooks/useSettings";
+// import useSettings from "../hooks/useSettings";
 import { Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { useTableExport } from "../hooks/useTableExport";
+// import { useNavigate } from "react-router-dom";
+// import { useTableExport } from "../hooks/useTableExport";
 
 import Breadcrumbs from "../components/sections/Breadcrumbs";
 import Statistics from "../components/Statistics";
@@ -14,18 +14,15 @@ import { useModal } from "../hooks/useModal";
 import { useForm } from "../hooks/useForm";
 import useTransactions from "../hooks/Data/useTransactions";
 import ExpenseForm from "../components/reusableforms/ExpenseForm";
-import notify from "../utils/toastr";
 
 function Categories() {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
 
   const { isOpen, modalMode, modalData, openModal, closeModal } = useModal();
 
   const {
     expenses_rows,
     expenses_total,
-    filteredData,
     expensesValues,
     handleSubmit,
     addItem,
@@ -42,23 +39,23 @@ function Categories() {
      initialValues :     expensesValues,
   });
 
-  const exportcolumns = categorycols?.filter((e) => e.export != false);
+  // const exportcolumns = categorycols?.filter((e) => e.export != false);
 
-  const { exportExcel, exportPDF } = useTableExport({
-    fileName: "transactions",
-    header: {
-      logo: "/logo.png",
-      title: "Categories Report",
-    },
-    sections: [
-      {
-        type: "table",
-        columns: exportcolumns,
-        data: filteredData ?? [],
-      },
-    ],
-    notify: notify,
-  });
+  // const { exportExcel, exportPDF } = useTableExport({
+  //   fileName: "transactions",
+  //   header: {
+  //     logo: "/logo.png",
+  //     title: "Categories Report",
+  //   },
+  //   sections: [
+  //     {
+  //       type: "table",
+  //       columns: exportcolumns,
+  //       data: filteredData ?? [],
+  //     },
+  //   ],
+  //   notify: notify,
+  // });
 
   
 
@@ -81,8 +78,8 @@ function Categories() {
         </div>
 
         <Control
-          exportExcel={() => exportExcel()}
-          exportPdf={() => exportPDF()}
+          // exportExcel={() => exportExcel()}
+          // exportPdf={() => exportPDF()}
           onAdd={() => openModal("add")}
           title={t("add_expense")}
         />
