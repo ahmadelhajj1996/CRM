@@ -20,7 +20,7 @@ export default function useAuth({ closeModal }) {
   const login = async (values, { resetForm }) => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/login",
+        "https://phplaravel-1626350-6708294.cloudwaysapps.com/api/login",
         values,
       );
       const expiresAt = Date.now() + response.data.expires_in * 1000;
@@ -47,7 +47,7 @@ export default function useAuth({ closeModal }) {
 
   const signout = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/admin/logout", null, {
+      await axios.post("https://phplaravel-1626350-6708294.cloudwaysapps.com/api/admin/logout", null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -79,7 +79,7 @@ export default function useAuth({ closeModal }) {
   const changePassword = async (values) => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/change-password",
+        "https://phplaravel-1626350-6708294.cloudwaysapps.com/api/change-password",
         values,
         {
           headers: {
