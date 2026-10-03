@@ -1,19 +1,13 @@
-// import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import Button from "../forms/Button";
 import { useEffect } from "react";
 
 import {
-  User,
   Globe,
   Menu,
-  LogOut,
+
   Earth,
-  Check,
-  Bell,
-  Clock,
+
   CheckCheckIcon,
-  ArrowRight,
   Power,
 } from "lucide-react";
 import Dropdown from "../Dropdown";
@@ -27,13 +21,11 @@ import Confirm from "../Confirm";
 import { useModal } from "../../hooks/useModal";
 import { useForm } from "../../hooks/useForm";
 import ChangePasswordForm from "../reusableforms/ChangePasswordForm";
-import { useNavigate } from "react-router-dom";
 import { changePasswordSchema } from "../../utils/validator";
 
 function Navbar({ onToggleSidebar }) {
   const { i18n } = useTranslation();
-  const navigate = useNavigate()
-  const { isOpen,   modalMode, openModal, closeModal } = useModal();
+  const { isOpen,   modalMode,   closeModal } = useModal();
   
   const {
     open: languageOpen,
@@ -42,19 +34,8 @@ function Navbar({ onToggleSidebar }) {
     close: languageClose,
   } = useDropdown();
 
-  const {
-    open: notificationsOpen,
-    toggle: notificationsToggle,
-    dropdownRef: notificationsRef,
-    close: notificationsClose,
-  } = useDropdown();
-
-  const {
-    open: userOpen,
-    toggle: userToggle1,
-    dropdownRef: userRef,
-    close: userClose,
-  } = useDropdown();
+   
+  
   const { changeLanguage } = useLanguage();
   const { signout, changePassword, changePasswordValues } = useAuth({});
 
@@ -77,24 +58,13 @@ function Navbar({ onToggleSidebar }) {
 
   const logout = () => {
     signout();
-    userClose();
     closeConfirm();
   };
 
   const { confirmOpen, openConfirm, closeConfirm, confirm } =
     useConfirm(logout);
 
-  const userItems = [
-    {
-      label: (
-        <span className="flex items-center justify-center text-red-500 font-medium hover:font-semibold gap-2 py-2.5 border-t">
-          <LogOut size={16} className=" rotate-180" />
-          Logout
-        </span>
-      ),
-      onClick: logout,
-    },
-  ];
+ 
 
   useEffect(() => {
     const savedLang = localStorage.getItem("lang") || "en";
@@ -103,11 +73,8 @@ function Navbar({ onToggleSidebar }) {
     });
   }, [i18n]);
 
-  useClickOutside(notificationsRef, notificationsClose);
   useClickOutside(languageRef, languageClose);
-  useClickOutside(userRef, userClose);
 
-  const unreadCount = 99;
 
   const { formikProps } = useForm({
     onSubmit: changePassword,
@@ -140,298 +107,8 @@ function Navbar({ onToggleSidebar }) {
                 className={"p-4 "}
               ></Dropdown>
             </div>
-
-            <div ref={notificationsRef} className="relative inline-block">
-              <button onClick={notificationsToggle}>
-                <Bell className=" app-icons" />
-                {unreadCount > 0 && (
-                  <span className="absolute     -top-3 start-1   px-1.5 font-bold py-[2px] text-xs flex   items-center justify-center rounded-full bg-red-500  textsm   text-white shadow">
-                    {unreadCount > 98 ? "+99" : unreadCount}
-                  </span>
-                )}
-              </button>
-              <Dropdown
-                open={notificationsOpen}
-                className={" pt-5   rounded-lg   "}
-              >
-                <div className=" px-2  flex justify-between">
-                  <div className="flex items-center gap-x-3  w-full ">
-                    <Bell
-                      size={32}
-                      color="gray"
-                      className=" p-2 bg-gray-100 rounded-md"
-                    />
-                    <div className="flex flex-col   min-w-0">
-                      <p className=" tracking-wide font-bold ">
-                        {"Notifications"}
-                      </p>
-                      <span className="description font-light text-sm -mt-1 w-full text-gray-700">
-                        {"422 unred"}
-                      </span>
-                    </div>
-                  </div>
-                  <Button
-                    title="mark all read "
-                    className=" inline-block w-[180px] border-[1px] border-gray-700   text-blue-700 "
-                    Icon={CheckCheckIcon}
-                  />
-                </div>
-
-                <div className="bg-gray-50 flex flex-col gap-y-0.5 overflow-y-auto max-h-[275px]">
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-8 items-center  p-2 border-s-[3px] border-blue-700">
-                    <div className="col-span-7 flex items-center gap-x-3 ">
-                      <Bell
-                        size={32}
-                        color="gray"
-                        className=" p-2 bg-white rounded-sm"
-                      />
-                      <div className="flex flex-col   min-w-0">
-                        <p className="text-xs tracking-wider font-medium cursor-pointer hover:text-blue-700 hover:font-semibold">
-                          Invoice Added: INO2026Aj0009
-                        </p>
-                        <span className=" text-[10px] font-light mt-1  w-full text-gray-700 flex gap-x-2 items-center">
-                          <Clock size={10} color="gray" />6 hours ago
-                        </span>
-                      </div>
-                    </div>
-                    <Check
-                      size={20}
-                      className=" p-0.5 border-[1px] bg-white rounded-sm"
-                    />
-                  </div>
-                </div>
-
-                <div className=" -mt-8 flex justify-center items-center gap-x-3 py-3 text-blue-700 font-semibold bg-gray-100 cursor-pointer ">
-                  View all notifications
-                  <ArrowRight size={16} className=" rtl:rotate-180" />
-                </div>
-              </Dropdown>
-            </div>
-
-            <div ref={userRef} className="relative inline-block">
-              <button onClick={userToggle1}>
-                <User className=" app-icons  w-7 h-7" />
-              </button>
-              <Dropdown open={userOpen} items={userItems} className={" pt-6  "}>
-                <div className="flex flex-col gap-y-6 px-12">
-                  <div className=" flex flex-col  items-center justify-center">
-                    <h2 className=" text-gray-900   font-bold">
-                      Ajman Branch Manger
-                    </h2>
-                    <span className=" -mt-1.5 text-sm text-gray-700">
-                      ajman@branch.com
-                    </span>
-                  </div>
-
-                  <div className=" flex flex-col gap-y-1.5  items-center justify-center text-blue-700">
-                    <button 
-                      onClick={()=>{
-                        userClose()
-                        navigate('profile')
-                      }}
-                      className=" cursor-pointer">profile</button>
-                    <button
-                      className=" cursor-pointer"
-                      onClick={() => {
-                        userClose()  
-                        openModal("add")
-                      }}
-                    >
-                      change password
-                    </button>
-                  </div>
-                </div>
-              </Dropdown>
-            </div>
+ 
+ 
           </div>
         </div>
       </div>
