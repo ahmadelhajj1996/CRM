@@ -15,7 +15,7 @@
   "amount": "Amount",
   "description": "Description",
   "save": "Save",
-  "delete": "Yes, Delete",
+  "delete": "Yes",
   "cancel": "Cancel",
   "column": {
     "amount": "Amount",
